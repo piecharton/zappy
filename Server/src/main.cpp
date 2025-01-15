@@ -5,10 +5,15 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include <argp.h>
+#include <vector>
+
+// TODO Parse arguments into structure
 
 int main(int argc, char *argv[])
 {
     int opt;
+    std::vector<std::string> team_names;
 
     while ((opt = getopt(argc, argv, "p:x:y:n:c:t:")) != -1)
     {
@@ -17,14 +22,27 @@ int main(int argc, char *argv[])
         case 'p':
         case 'x':
         case 'y':
-        case 'n':
         case 'c':
         case 't':
+        {
+            const std::string argument_option(optarg, strlen(optarg));
+            std::cout << "option [" << static_cast<char>(opt) << "] with arg " << argument_option << std::endl;
+        }
+        break;
+        case 'n':
+        {
+            //team names parsing
+            team_names.push_back(std::string(optarg, strlen(optarg)));
+                std::cout << team_names.back() << std::endl;
+
+            for (int i = optind; (i < argc) && (argv[i][0] != '-'); ++i)
             {
-                const std::string argument_option(optarg, strlen(optarg));
-                std::cout << "option [" << static_cast<char>(opt) << "] with arg " << argument_option << std::endl;
+                const std::string current_team_name(argv[i], strlen(argv[i]));
+                team_names.push_back(current_team_name);
+                std::cout << team_names.back() << std::endl;
             }
-            break;
+        }
+        break;
         case '?':
         default:
             std::cout << "Unknown option:" << optopt << std::endl;
