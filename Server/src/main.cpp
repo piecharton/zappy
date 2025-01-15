@@ -24,7 +24,6 @@ struct game_config
 
 std::ostream &operator<<(std::ostream &out, const struct game_config &obj)
 {
-    // write obj to stream
     std::string team_names;
     for (const std::string &name : obj.team_names)
     {
