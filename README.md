@@ -37,6 +37,8 @@ Contraintes :
 - Connexion Serveur
 
 GUI - TBD
+- QT ?
+
 
 [Questions]
 Protocole TCP a recoder ?-> A priori non, c'est juste un parametre (SOCK_STREAM a donner a la socket)
