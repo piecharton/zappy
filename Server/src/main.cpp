@@ -9,6 +9,7 @@
 #include <vector>
 
 // DONE Parse arguments into structure
+// TODO Map generation with food and minerals
 
 struct game_config
 {
@@ -101,7 +102,6 @@ struct game_config argument_parsing(int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
-
     struct game_config config = argument_parsing(argc, argv);
     if (config.validity)
     {
@@ -123,16 +123,16 @@ int main(int argc, char *argv[])
     // listening to the assigned socket
     listen(serverSocket, 5);
 
-    // while (true)
-    // {
-    //     // accepting connection request
-    //     int clientSocket = accept(serverSocket, nullptr, nullptr);
+    while (true)
+    {
+        // accepting connection request
+        int clientSocket = accept(serverSocket, nullptr, nullptr);
 
-    //     // recieving data
-    //     char buffer[1024] = {0};
-    //     recv(clientSocket, buffer, sizeof(buffer), 0);
-    //     std::cout << "Message from client: " << buffer << std::endl;
-    // }
+        // recieving data
+        char buffer[1024] = {0};
+        recv(clientSocket, buffer, sizeof(buffer), 0);
+        std::cout << "Message from client: " << buffer << std::endl;
+    }
 
     // closing the socket.
     close(serverSocket);
