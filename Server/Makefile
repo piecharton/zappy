@@ -5,7 +5,8 @@ SHELL = /bin/sh
 CXX = c++
 CXXFLAGS = -I ./include  -Wall -Wextra -Werror -g
 
-FILES =	main
+FILES =	main 			\
+		generate_map	\
 
 SRCS	= $(addprefix src/, $(addsuffix .cpp, $(FILES)))
 
