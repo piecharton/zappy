@@ -5,13 +5,14 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include <cstring>
 
 struct client_config
 {
     bool validity = true;
     int port = 0;
     std::string team_name;
-    std::string hostname("localhost");
+    std::string hostname = "localhost";
 };
 
 std::ostream &operator<<(std::ostream &out, const struct client_config &obj)
@@ -59,9 +60,9 @@ struct client_config argument_parsing(int argc, char *argv[])
     return config;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-    struct game_config config = argument_parsing(argc, argv);
+    struct client_config config = argument_parsing(argc, argv);
     if (config.validity)
     {
         std::cout << "config valid" << std::endl;
