@@ -7,16 +7,23 @@ CXXFLAGS = -I ./include  -Wall -Wextra -Werror -g
 
 FILES =	main
 
-SRCS	= $(addprefix src/, $(addsuffix .cpp, $(FILES)))
+SRCS	= $(addprefix $(SRCDIR), $(addsuffix .cpp, $(FILES)))
 
-OBJS 	= $(addprefix src/, $(addsuffix .o, $(FILES)))
+OBJS 	= $(addprefix $(OBJDIR), $(addsuffix .o, $(FILES)))
 
+SRCDIR	= src/
 OBJDIR  = obj/
 
 NAME = Client
 
-.cpp.o :
-	@${CXX} ${CXXFLAGS} -c $< -o ${<:.cpp=.o}
+# Rule to compile source files into object files
+# $(OBJDIR)%.o : Pattern for object files in the object directory
+# src/%.cpp    : Corresponding source files in the src directory
+# $<           : First prerequisite (source file)
+# $@           : Target file (object file)
+# -c           : Compile only, don't link
+$(OBJDIR)%.o : $(SRCDIR)%.cpp
+	${CXX} ${CXXFLAGS} -c $< -o $@
 
 all : $(NAME)
 
@@ -27,9 +34,9 @@ $(NAME) :  $(OBJDIR) $(OBJS)
 	@$(CXX) $(OBJS) $(CXXFLAGS)  -o $(NAME)
 	
 clean:
-	@rm -f $(OBJS)
 	@rm -f $(NAME)
 
 fclean: clean
+	@rm -f $(OBJS)
 
 re: fclean all
