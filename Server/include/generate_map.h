@@ -1,9 +1,9 @@
 #ifndef ZAPPY_SERVER_GENERATE_MAP_H
 #define ZAPPY_SERVER_GENERATE_MAP_H
 
-// ... existing 
 #include <vector>
 #include <string>
+#include <cstdint>
 
 // Mineral structure definition
 struct mineral {
