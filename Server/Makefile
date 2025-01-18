@@ -7,6 +7,7 @@ CXXFLAGS = -I ./include  -Wall -Wextra -Werror -g -fsanitize=address
 
 FILES =	main 			\
 		generate_map	\
+		parse_arg		\
 
 SRCS	= $(addprefix $(SRCDIR), $(addsuffix .cpp, $(FILES)))
 

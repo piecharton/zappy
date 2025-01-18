@@ -5,7 +5,8 @@ SHELL = /bin/sh
 CXX = c++
 CXXFLAGS = -I ./include  -Wall -Wextra -Werror -g
 
-FILES =	main
+FILES =	main		\
+		parse_arg	\
 
 SRCS	= $(addprefix $(SRCDIR), $(addsuffix .cpp, $(FILES)))
 
